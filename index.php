@@ -26,10 +26,21 @@
 
 //Carregando um usuário atravez do login e da senha
 
-	$usuario = new Usuario();
+	/*$usuario = new Usuario();
 	$usuario->login("user", "!@#$");
 
-	echo $usuario;
+	echo $usuario;*/
+
+//Inserindo um usuário
+
+	$aluno = new Usuario();
+
+	$aluno->setDeslogin("aluno");
+	$aluno->setDessenha("@lun0");
+
+	$aluno->insert();
+
+	echo $aluno;
 
 	/*$sql = new Sql();
 
