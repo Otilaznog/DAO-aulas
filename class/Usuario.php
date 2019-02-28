@@ -62,7 +62,38 @@
 
 			$sql = new Sql();
 
-			return $sql->select("SELECT * FROM tb_usuarios ORDER BY delogin;");
+			return $sql->select("SELECT * FROM tb_usuarios ORDER BY idusuario;");
+
+		}
+
+		public static function search($login){
+
+			$sql =new Sql();
+
+			return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(':SEARCH'=>"%".$login."%"));
+
+		}
+
+		public function login($login, $senha){
+
+			$sql = new Sql();
+
+			$results = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :login AND dessenha = :senha", array(":login"=>$login, ":senha"=>$senha));
+
+			if (count($results) > 0){
+
+				$row = $results[0];
+
+				$this->setIdusuario($row['idusuario']);
+				$this->setDeslogin($row['deslogin']);
+				$this->setDessenha($row['dessenha']);
+				$this->setDtcadastro(new DateTime($row['dtcadastro']));
+
+			} else {
+
+				throw new Exception("Login iu senha inválidos.");
+
+			}
 
 		}
 

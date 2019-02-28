@@ -14,9 +14,22 @@
 	*/
 //Carregando uma lista de usuários
 
-	$lista = Usuario::getList();
+	/*$lista = Usuario::getList();
 
-	echo json_encode($lista);
+	echo json_encode($lista);*/
+
+//Carregando uma lista de usuario, ordenando por login
+
+	/*$search = Usuario::search("j");
+
+	echo json_encode($search);*/
+
+//Carregando um usuário atravez do login e da senha
+
+	$usuario = new Usuario();
+	$usuario->login("user", "!@#$");
+
+	echo $usuario;
 
 	/*$sql = new Sql();
 
