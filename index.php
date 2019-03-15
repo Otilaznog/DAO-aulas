@@ -39,15 +39,30 @@
 
 	echo $aluno;*/
 
-//Alterando dados de um usuário
+//Alterando dados do banco de dados
 
-	$usuario = new Usuario();
+	/*$usuario = new Usuario();
 
 	$usuario->loadById(8);
 
 	$usuario->update("professor", "351651");
 
+	echo $usuario;*/
+
+//Deletanto dados do banco
+
+	$usuario = new Usuario();
+
+	$usuario->loadById(9);
+
+	$usuario->delete();
+
 	echo $usuario;
+
+
+
+//------------------------------------------------
+
 
 	/*$sql = new Sql();
 
