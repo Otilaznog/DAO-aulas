@@ -82,7 +82,7 @@
 
 			} else {
 
-				throw new Exception("Login iu senha inválidos.");
+				throw new Exception("Login e senha inválidos.");
 
 			}
 
@@ -101,7 +101,8 @@
 
 			$sql = new Sql();
 
-			$results = $sql->select("EXECUTE sp_usuarios_insert(:login,  :senha)", array(':login'=>$this-> getDeslogin(), ':senha'=>$this->getDessenha()));
+			$results = $sql->select("CALL sp_usuarios_insert(:login,  :senha)", array(':login'=>$this-> getDeslogin(), ':senha'=>$this->getDessenha()
+		));
 
 			if (count($results) > 0){
 
@@ -111,9 +112,35 @@
 
 		}
 
+		public function Update($login, $senha){
+
+			$this->setDeslogin($login);
+			$this->setDessenha($senha);
+
+			$sql = new Sql();
+
+			$sql->query("UPDATE tb_usuarios SET deslogin = :login, dessenha = :senha WHERE idusuario = :id", array(
+				':login'=>$this->getDeslogin(),
+				':senha'=>$this->getDessenha(),
+				':id'=>$this->getIdusuario()
+			));
+
+		}
+
+		public function __construct ($login = "", $senha = ""){
+
+			$this->setDeslogin($login);
+			$this->setDessenha($senha);
+
+		}
+
 		public function __toString(){
 
-			return json_encode(array("idusuario"=>$this->getIdusuario(), "deslogin"=>$this->getDeslogin(), "dessenha"=>$this->getDessenha(), "dtcadastro"=>$this->getDtcadastro()->format("d/m/Y H:i:s")));	
+			return json_encode(array("idusuario"=>$this->getIdusuario(),
+									 "deslogin"=>$this->getDeslogin(), 
+									 "dessenha"=>$this->getDessenha(), 
+									 "dtcadastro"=>$this->getDtcadastro()->format("d/m/Y H:i:s")
+									));	
 		}
 
 	}

@@ -20,9 +20,9 @@
 
 //Carregando uma lista de usuario, ordenando por login
 
-	/*$search = Usuario::search("j");
+	/*$search = Usuario::search("a");
 
-	echo json_encode($search);*/
+	echo json_encode($search)*/;
 
 //Carregando um usuário atravez do login e da senha
 
@@ -33,14 +33,21 @@
 
 //Inserindo um usuário
 
-	$aluno = new Usuario();
-
-	$aluno->setDeslogin("aluno");
-	$aluno->setDessenha("@lun0");
+	/*$aluno = new Usuario("aluno", "@lun0");
 
 	$aluno->insert();
 
-	echo $aluno;
+	echo $aluno;*/
+
+//Alterando dados de um usuário
+
+	$usuario = new Usuario();
+
+	$usuario->loadById(8);
+
+	$usuario->update("professor", "351651");
+
+	echo $usuario;
 
 	/*$sql = new Sql();
 
